@@ -41,3 +41,11 @@ func (cond *conditional[T]) Then(truthy T) branch[T] {
 
 	return cond.br
 }
+
+func (cond *conditional[T]) Append(data []T, v T) []T {
+	if cond.br.flag {
+		data = append(data, v)
+	}
+
+	return data
+}
