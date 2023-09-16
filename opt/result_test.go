@@ -19,7 +19,7 @@ func Test_Result(t *testing.T) {
 
 	v, err := r3.Get()
 
-	assert.ErrorContains(t, err, "xuxa")
+	assert.ErrorContains(t, err, "context added to parse3")
 	assert.Equal(t, int64(0), v)
 }
 
