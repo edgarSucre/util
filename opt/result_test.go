@@ -19,7 +19,7 @@ func Test_Result(t *testing.T) {
 
 	v, err := r3.Get()
 
-	assert.ErrorContains(t, err, "context added to parse3")
+	assert.ErrorContains(t, err, "context aded to parse 2")
 	assert.Equal(t, int64(0), v)
 }
 
@@ -34,7 +34,7 @@ func privateFunc1() opt.TryFunc[int8] {
 
 func privateFunc2() opt.MapFunc[int8, int16] {
 	return func(v int8) *opt.Result[int16] {
-		result := opt.Touple(parse2(v, false))
+		result := opt.Touple(parse2(v, true))
 		result.Wrap("context aded to parse 2")
 
 		return result
@@ -43,7 +43,7 @@ func privateFunc2() opt.MapFunc[int8, int16] {
 
 func privateFunc3() opt.MapFunc[int16, int64] {
 	return func(i int16) *opt.Result[int64] {
-		result := opt.Touple(parse3(i, true))
+		result := opt.Touple(parse3(i, false))
 		result.Wrap("context added to parse3")
 
 		return result

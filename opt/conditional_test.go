@@ -25,3 +25,15 @@ func Test_Conditional_IfNil(t *testing.T) {
 	b := opt.NotNil(valuePointer).Otherwise(10)
 	assert.Equal(t, 0, b)
 }
+
+func Test_Conditional_Append(t *testing.T) {
+	numbers := []int{1, 2, 3, 4, 5, 6, 7, 8}
+	isEven := func(i int) bool { return i%2 == 0 }
+
+	even := make([]int, 0, len(numbers))
+	for _, v := range numbers {
+		even = opt.If[int](isEven(v)).Append(even, v)
+	}
+
+	assert.Equal(t, []int{2, 4, 6, 8}, even)
+}
