@@ -1,8 +1,9 @@
 package col
 
-type MapFunc[T, K comparable] func(T) K
+type MapFunc[E, K any] func(E) K
 
-func Map[T, K comparable](data []T, fn MapFunc[T, K]) []K {
+// Map returns a slice of K, by calling MapFunc() on every element
+func Map[S ~[]E, E, K any](data S, fn MapFunc[E, K]) []K {
 	res := make([]K, len(data))
 	for i, v := range data {
 		res[i] = fn(v)

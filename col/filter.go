@@ -1,9 +1,10 @@
 package col
 
-type FilterFunc[T comparable] func(T) bool
+type FilterFunc[E any] func(E) bool
 
-func Filter[T comparable](data []T, fn FilterFunc[T]) []T {
-	res := make([]T, 0, len(data))
+// Filter returns a slice of elements when fn(element) is true
+func Filter[S ~[]E, E any](data S, fn FilterFunc[E]) S {
+	res := make(S, 0, len(data))
 	for _, v := range data {
 		if fn(v) {
 			res = append(res, v)
